@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
     <link rel="stylesheet" href="/FinTrack/css/styles.css">
-    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="/FinTrack/css/register.css">
+    <link rel="manifest" href="/FinTrack/manifest.json">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
@@ -15,25 +16,39 @@
     </div>
 
     <div class="register-container">
-        <h2>Introduce tu correo electrónico</h2>
-        <div class="input-field">
-            <input type="email" id="email" placeholder="Correo electrónico">
-        </div>
+        <form id="register-form">
+            <div id="step-1" class="step active">
+                <h2>Introduce tu nombre y apellidos</h2>
+                <div class="input-field">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required>
+                </div>
+                <button type="button" class="btn-custom next-step">Siguiente</button>
+            </div>
 
-        <h2>Introduce tu contraseña</h2>
-        <div class="input-field password-field">
-            <input type="password" id="password" placeholder="Password">
-            <i class="material-icons">visibility</i>
-        </div>
+            <div id="step-2" class="step">
+                <h2>Introduce tu correo electrónico</h2>
+                <div class="input-field">
+                    <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+                </div>
 
-        <div class="input-field password-field">
-            <input type="password" id="confirm-password" placeholder="Password">
-            <i class="material-icons">visibility</i>
-        </div>
+                <h2>Introduce tu contraseña</h2>
+                <div class="input-field password-field">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <i class="material-icons">visibility</i>
+                </div>
 
-        <button class="btn-custom" id="register-btn">Siguiente</button>
+                <div class="input-field password-field">
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar Contraseña" required>
+                    <i class="material-icons">visibility</i>
+                </div>
+                <button type="submit" class="btn-custom">Finalizar Registro</button>
+            </div>
+        </form>
     </div>
 
-    <script src="/FinTrack/js/register.js"></script>
+    <script type="module" src="/FinTrack/js/register.js"></script>
 </body>
 </html>

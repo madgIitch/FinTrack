@@ -4,27 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FinTrack</title>
-    <link rel="stylesheet" href="css/styles.css"> <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="manifest" href="manifest.json">
-    <script src="js/index.js"></script>
+    <script type="module" src="js/index.js"></script>
 </head>
 <body>
-    <div class="background-container"></div> <div class="logo-container">
+    <div class="background-container"></div>
+    <div class="logo-container">
         <img src="img/logoFintonic.svg" alt="Logo Fintonic" class="logo">
     </div>
 
     <div class="login-container">
-        <div class="input-field">
-            <input type="email" id="email" placeholder="Correo electrónico">
-        </div>
+        <form id="login-form">
+            <div class="input-field">
+                <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+            </div>
 
-        <div class="input-field password-field">
-            <input type="password" id="password" placeholder="Contraseña">
-            <i class="material-icons">visibility</i>
-        </div>
+            <div class="input-field password-field">
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                <i class="material-icons">visibility</i>
+            </div>
 
-        <button class="btn-custom">Iniciar sesión</button>
-        <a href="pages/register.html" class="btn-custom">Registro</a> </div>
+            <button type="submit" class="btn-custom" id="login-button">Iniciar sesión</button>
+        </form>
+        <a href="pages/register.html" class="btn-custom">Registro</a>
     </div>
 </body>
 </html>
