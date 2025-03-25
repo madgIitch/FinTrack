@@ -663,7 +663,8 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"NhzJs":[function(require,module,exports,__globalThis) {
 // index.js
-var _firebaseJs = require("./firebase.js"); // Ajusta la ruta si es necesario
+var _firebaseJs = require("./firebase.js"); // Import the auth object from firebase.js
+var _auth = require("firebase/auth"); // Import the signInWithEmailAndPassword function
 document.addEventListener('DOMContentLoaded', ()=>{
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
@@ -673,18 +674,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
         const email = emailInput.value;
         const password = passwordInput.value;
         try {
-            const userCredential = await signInWithEmailAndPassword((0, _firebaseJs.auth), email, password);
+            const userCredential = await (0, _auth.signInWithEmailAndPassword)((0, _firebaseJs.auth), email, password);
             const user = userCredential.user;
             console.log('Usuario logueado:', user);
             // Redirigir a la página principal
             window.location.href = 'homepage.html';
         } catch (error) {
             console.error("Error al iniciar sesi\xf3n:", error);
-            alert("Error al iniciar sesi\xf3n. Verifica tu correo electr\xf3nico y contrase\xf1a.");
+            let errorMessage = "Error al iniciar sesi\xf3n. Verifica tu correo electr\xf3nico y contrase\xf1a.";
+            if (error.code === 'auth/wrong-password') errorMessage = "Contrase\xf1a incorrecta.";
+            else if (error.code === 'auth/user-not-found') errorMessage = 'Usuario no encontrado.';
+            alert(errorMessage);
         }
     });
 });
 
-},{"./firebase.js":"24zHi"}]},["nb1Zh","NhzJs"], "NhzJs", "parcelRequire94c2")
+},{"./firebase.js":"24zHi","firebase/auth":"4ZBbi"}]},["nb1Zh","NhzJs"], "NhzJs", "parcelRequire94c2")
 
 //# sourceMappingURL=FinTrack.0be11312.js.map

@@ -1,5 +1,6 @@
 // index.js
-import { app, auth, db } from './firebase.js'; // Ajusta la ruta si es necesario
+import { auth } from './firebase.js'; // Import the auth object from firebase.js
+import { signInWithEmailAndPassword } from 'firebase/auth'; // Import the signInWithEmailAndPassword function
 
 document.addEventListener('DOMContentLoaded', () => {
     const loginForm = document.getElementById('login-form');
@@ -20,7 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'homepage.html';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
-            alert('Error al iniciar sesión. Verifica tu correo electrónico y contraseña.');
+            let errorMessage = 'Error al iniciar sesión. Verifica tu correo electrónico y contraseña.';
+            if (error.code === 'auth/wrong-password') {
+                errorMessage = 'Contraseña incorrecta.';
+            } else if (error.code === 'auth/user-not-found') {
+                errorMessage = 'Usuario no encontrado.';
+            }
+            alert(errorMessage);
         }
     });
 });
