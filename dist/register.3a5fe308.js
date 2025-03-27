@@ -156,7 +156,7 @@
       });
     }
   }
-})({"9frXD":[function(require,module,exports,__globalThis) {
+})({"fn94H":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
@@ -662,21 +662,19 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"6bhfR":[function(require,module,exports,__globalThis) {
-// register.js
 var _firebaseJs = require("./firebase.js");
 var _auth = require("firebase/auth");
 var _firestore = require("firebase/firestore");
 document.addEventListener('DOMContentLoaded', ()=>{
     const form = document.getElementById('register-form');
-    const steps = document.querySelectorAll('.step');
+    // Corregimos aquí:
+    const steps = Array.from(document.querySelectorAll('.step'));
     const nextStepButtons = document.querySelectorAll('.next-step');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirm-password');
-    const verificationCodeInput = document.getElementById('verification-code');
     const visibilityIcons = document.querySelectorAll('.visibility-icon');
     const emailExistsAlert = document.getElementById('email-exists-alert');
-    const verificationError = document.getElementById('verification-error');
     let currentStep = 0;
     let emailForVerification = '';
     function showStep(stepIndex) {
@@ -700,24 +698,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (methods.length > 0) emailExistsAlert.style.display = 'block';
             else {
                 emailExistsAlert.style.display = 'none';
+                console.log("Enviando correo de verificaci\xf3n...");
                 await (0, _auth.sendEmailVerification)((0, _firebaseJs.auth).currentUser);
-                showStep(2); // Ir al paso de verificación del código
+                console.log("Correo de verificaci\xf3n enviado.");
+                alert("Se ha enviado un correo de verificaci\xf3n a tu direcci\xf3n de correo electr\xf3nico. Por favor, verifica tu correo.");
+                console.log("Llamando a showStep(2)"); // Cambiado a 2
+                showStep(2); // Ir al paso de contraseña
+                console.log("showStep(2) ejecutado.");
             }
         } catch (error) {
             console.error("Error al verificar el correo:", error);
             alert("Error al verificar el correo. Int\xe9ntalo de nuevo.");
-        }
-    });
-    document.getElementById('verify-code').addEventListener('click', async ()=>{
-        const code = verificationCodeInput.value;
-        try {
-            // No hay una forma directa de verificar el código enviado por Firebase
-            // Se asume que si el usuario llega a este punto después del envío del correo,
-            // y el correo es válido, entonces el usuario tiene acceso al correo.
-            showStep(3); // Ir al paso de contraseña
-        } catch (error) {
-            console.error("Error al verificar el c\xf3digo:", error);
-            verificationError.style.display = 'block';
         }
     });
     visibilityIcons.forEach((icon)=>{
@@ -738,7 +729,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             return;
         }
         try {
-            // El usuario ya debería haber verificado su correo en el paso anterior
+            // Creamos el usuario (el correo se verificará por el enlace del email)
             const userCredential = await (0, _auth.createUserWithEmailAndPassword)((0, _firebaseJs.auth), emailForVerification, password);
             const user = userCredential.user;
             const userData = {
@@ -748,7 +739,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             };
             const docRef = (0, _firestore.doc)((0, _firebaseJs.db), "users", user.uid);
             await (0, _firestore.setDoc)(docRef, userData);
-            alert("Registro completado con \xe9xito.");
+            alert("Registro completado. Por favor, verifica tu correo electr\xf3nico.");
             window.location.href = "../index.html";
         } catch (error) {
             console.error("Error durante el registro:", error);
@@ -760,6 +751,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     });
 });
 
-},{"./firebase.js":"24zHi","firebase/auth":"4ZBbi","firebase/firestore":"3RBs1"}]},["9frXD","6bhfR"], "6bhfR", "parcelRequire94c2")
+},{"./firebase.js":"24zHi","firebase/auth":"4ZBbi","firebase/firestore":"3RBs1"}]},["fn94H","6bhfR"], "6bhfR", "parcelRequire94c2")
 
 //# sourceMappingURL=register.3a5fe308.js.map

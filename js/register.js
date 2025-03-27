@@ -1,19 +1,17 @@
-// register.js
 import { app, auth, db } from './firebase.js';
-import { createUserWithEmailAndPassword, sendEmailVerification, fetchSignInMethodsForEmail, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, fetchSignInMethodsForEmail } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('register-form');
-    const steps = document.querySelectorAll('.step');
+    // Corregimos aquí:
+    const steps = Array.from(document.querySelectorAll('.step'));
     const nextStepButtons = document.querySelectorAll('.next-step');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     const confirmPasswordInput = document.getElementById('confirm-password');
-    const verificationCodeInput = document.getElementById('verification-code');
     const visibilityIcons = document.querySelectorAll('.visibility-icon');
     const emailExistsAlert = document.getElementById('email-exists-alert');
-    const verificationError = document.getElementById('verification-error');
     let currentStep = 0;
     let emailForVerification = '';
 
@@ -45,25 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 emailExistsAlert.style.display = 'block';
             } else {
                 emailExistsAlert.style.display = 'none';
+                console.log("Enviando correo de verificación...");
                 await sendEmailVerification(auth.currentUser);
-                showStep(2); // Ir al paso de verificación del código
+                console.log("Correo de verificación enviado.");
+                alert('Se ha enviado un correo de verificación a tu dirección de correo electrónico. Por favor, verifica tu correo.');
+                console.log("Llamando a showStep(2)"); // Cambiado a 2
+                showStep(2); // Ir al paso de contraseña
+                console.log("showStep(2) ejecutado.");
             }
         } catch (error) {
             console.error("Error al verificar el correo:", error);
             alert("Error al verificar el correo. Inténtalo de nuevo.");
-        }
-    });
-
-    document.getElementById('verify-code').addEventListener('click', async () => {
-        const code = verificationCodeInput.value;
-        try {
-            // No hay una forma directa de verificar el código enviado por Firebase
-            // Se asume que si el usuario llega a este punto después del envío del correo,
-            // y el correo es válido, entonces el usuario tiene acceso al correo.
-            showStep(3); // Ir al paso de contraseña
-        } catch (error) {
-            console.error("Error al verificar el código:", error);
-            verificationError.style.display = 'block';
         }
     });
 
@@ -89,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // El usuario ya debería haber verificado su correo en el paso anterior
+            // Creamos el usuario (el correo se verificará por el enlace del email)
             const userCredential = await createUserWithEmailAndPassword(auth, emailForVerification, password);
             const user = userCredential.user;
 
@@ -102,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const docRef = doc(db, "users", user.uid);
             await setDoc(docRef, userData);
 
-            alert('Registro completado con éxito.');
+            alert('Registro completado. Por favor, verifica tu correo electrónico.');
             window.location.href = "../index.html";
 
         } catch (error) {
