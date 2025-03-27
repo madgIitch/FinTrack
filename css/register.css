@@ -129,3 +129,8 @@ body {
 .step.active {
     display: block;
 }
+
+.alert {
+    padding: 10px;
+    border-radius: 4px;
+}

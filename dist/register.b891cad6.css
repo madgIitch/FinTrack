@@ -119,4 +119,9 @@ body {
 .step.active {
   display: block;
 }
+
+.alert {
+  border-radius: 4px;
+  padding: 10px;
+}
 /*# sourceMappingURL=register.b891cad6.css.map */

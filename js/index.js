@@ -17,8 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             console.log('Usuario logueado:', user);
+            console.log('Intentando redirigir a home.html'); // <--- AÑADE ESTA LÍNEA
+            window.location.href = 'pages/home.html';
             // Redirigir a la página principal
-            window.location.href = 'homepage.html';
+            window.location.href = 'pages/home.html';
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
             let errorMessage = 'Error al iniciar sesión. Verifica tu correo electrónico y contraseña.';

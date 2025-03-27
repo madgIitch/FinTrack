@@ -24,7 +24,7 @@
                 <div class="input-field">
                     <input type="text" id="apellidos" name="apellidos" placeholder="Apellidos" required="">
                 </div>
-                <button type="button" class="btn-custom next-step">Siguiente</button>
+                <button type="button" class="btn-custom next-step" data-next="step-2">Siguiente</button>
             </div>
 
             <div id="step-2" class="step">
@@ -32,18 +32,35 @@
                 <div class="input-field">
                     <input type="email" id="email" name="email" placeholder="Correo electrónico" required="">
                 </div>
+                <div id="email-exists-alert" class="alert" style="color: red; margin-top: 10px; display: none">
+                    Este correo electrónico ya está en uso. <a href="/index.html">Iniciar sesión</a>
+                </div>
+                <button type="button" class="btn-custom next-step" data-next="step-3" id="check-email">Siguiente</button>
+            </div>
 
+            <div id="step-3" class="step">
+                <h2>Introduce el código de verificación</h2>
+                <div class="input-field">
+                    <input type="text" id="verification-code" name="verification-code" placeholder="Código de verificación" required="">
+                </div>
+                <button type="button" class="btn-custom next-step" data-next="step-4" id="verify-code">Verificar código</button>
+                <div id="verification-error" class="alert" style="color: red; margin-top: 10px; display: none">
+                    Código de verificación incorrecto.
+                </div>
+            </div>
+
+            <div id="step-4" class="step">
                 <h2>Introduce tu contraseña</h2>
                 <div class="input-field password-field">
                     <input type="password" id="password" name="password" placeholder="Contraseña" required="">
-                    <i class="material-icons">visibility</i>
+                    <i class="material-icons visibility-icon">visibility</i>
                 </div>
 
                 <div class="input-field password-field">
                     <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar Contraseña" required="">
-                    <i class="material-icons">visibility</i>
+                    <i class="material-icons visibility-icon">visibility</i>
                 </div>
-                <button type="submit" class="btn-custom">Finalizar Registro</button>
+                <button type="submit" class="btn-custom" id="finalizar-registro">Finalizar Registro</button>
             </div>
         </form>
     </div>
