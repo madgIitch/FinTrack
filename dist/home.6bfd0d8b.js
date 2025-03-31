@@ -662,7 +662,43 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"9wRWw":[function(require,module,exports,__globalThis) {
+var _firebaseJs = require("./firebase.js");
+var _firestore = require("firebase/firestore");
+var _auth = require("firebase/auth");
+document.addEventListener('DOMContentLoaded', ()=>{
+    const userNameSpan = document.getElementById('user-name');
+    (0, _auth.onAuthStateChanged)((0, _firebaseJs.auth), async (user)=>{
+        if (user) {
+            console.log('Usuario autenticado en home.js:', user);
+            const userId = user.uid;
+            // Obtén la instancia de db aquí, asegurándote de que app esté inicializada
+            const db = (0, _firestore.getFirestore)((0, _firebaseJs.app));
+            const userDocRef = (0, _firestore.doc)(db, 'users', userId);
+            console.log('Referencia al documento:', userDocRef);
+            try {
+                const docSnap = await (0, _firestore.getDoc)(userDocRef);
+                console.log('docSnap:', docSnap);
+                if (docSnap.exists()) {
+                    const userData = docSnap.data();
+                    const firstName = userData.firstName || ''; // Usa 'firstName' con 'F' mayúscula
+                    const lastName = userData.lastName || ''; // Usa 'lastName' con 'L' mayúscula
+                    userNameSpan.textContent = `${firstName} ${lastName}`.trim();
+                } else {
+                    userNameSpan.textContent = 'Usuario - Datos no encontrados';
+                    console.log("No se encontraron los datos del usuario en Firestore.");
+                }
+            } catch (error) {
+                console.error("Error al obtener los datos del usuario:", error);
+                userNameSpan.textContent = 'Usuario - Error al cargar';
+            }
+        } else {
+            userNameSpan.textContent = 'No autenticado';
+            console.log("Usuario no autenticado en home.js.");
+        // window.location.href = '../index.html';
+        }
+    });
+});
 
-},{}]},["2a8G5","9wRWw"], "9wRWw", "parcelRequire94c2")
+},{"./firebase.js":"24zHi","firebase/firestore":"3RBs1","firebase/auth":"4ZBbi"}]},["2a8G5","9wRWw"], "9wRWw", "parcelRequire94c2")
 
 //# sourceMappingURL=home.6bfd0d8b.js.map

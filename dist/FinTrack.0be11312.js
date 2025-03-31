@@ -662,31 +662,44 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"NhzJs":[function(require,module,exports,__globalThis) {
-// index.js
 var _firebaseJs = require("./firebase.js"); // Import the auth object from firebase.js
-var _auth = require("firebase/auth"); // Import the signInWithEmailAndPassword function
+var _auth = require("firebase/auth"); // Import setPersistence y browserLocalPersistence
 document.addEventListener('DOMContentLoaded', ()=>{
     const loginForm = document.getElementById('login-form');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    loginForm.addEventListener('submit', async (event)=>{
-        event.preventDefault();
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        try {
-            const userCredential = await (0, _auth.signInWithEmailAndPassword)((0, _firebaseJs.auth), email, password);
-            const user = userCredential.user;
-            console.log('Usuario logueado:', user);
-            console.log('Intentando redirigir a home.html'); // <--- AÑADE ESTA LÍNEA
+    // Listener para el estado de autenticación
+    (0, _auth.onAuthStateChanged)((0, _firebaseJs.auth), (user)=>{
+        if (user) {
+            // El usuario ya está autenticado, redirige directamente a home.html
+            console.log('Usuario ya autenticado:', user);
             window.location.href = 'pages/home.html';
-            // Redirigir a la página principal
-            window.location.href = 'pages/home.html';
-        } catch (error) {
-            console.error("Error al iniciar sesi\xf3n:", error);
-            let errorMessage = "Error al iniciar sesi\xf3n. Verifica tu correo electr\xf3nico y contrase\xf1a.";
-            if (error.code === 'auth/wrong-password') errorMessage = "Contrase\xf1a incorrecta.";
-            else if (error.code === 'auth/user-not-found') errorMessage = 'Usuario no encontrado.';
-            alert(errorMessage);
+        } else {
+            // El usuario no está autenticado, muestra el formulario de inicio de sesión
+            console.log("Usuario no autenticado, mostrando formulario de inicio de sesi\xf3n.");
+            // Aquí puedes dejar el código existente para el envío del formulario de login
+            if (loginForm) loginForm.addEventListener('submit', async (event)=>{
+                event.preventDefault();
+                const email = emailInput.value;
+                const password = passwordInput.value;
+                try {
+                    // Configura la persistencia antes de iniciar sesión
+                    await (0, _auth.setPersistence)((0, _firebaseJs.auth), (0, _auth.browserLocalPersistence));
+                    const userCredential = await (0, _auth.signInWithEmailAndPassword)((0, _firebaseJs.auth), email, password);
+                    const user = userCredential.user;
+                    console.log('Usuario logueado:', user);
+                    console.log('Intentando redirigir a home.html'); // <--- AÑADE ESTA LÍNEA
+                    window.location.href = 'pages/home.html';
+                    // Redirigir a la página principal
+                    window.location.href = 'pages/home.html';
+                } catch (error) {
+                    console.error("Error al iniciar sesi\xf3n:", error);
+                    let errorMessage = "Error al iniciar sesi\xf3n. Verifica tu correo electr\xf3nico y contrase\xf1a.";
+                    if (error.code === 'auth/wrong-password') errorMessage = "Contrase\xf1a incorrecta.";
+                    else if (error.code === 'auth/user-not-found') errorMessage = 'Usuario no encontrado.';
+                    alert(errorMessage);
+                }
+            });
         }
     });
 });
