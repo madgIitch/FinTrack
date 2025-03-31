@@ -7,13 +7,15 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="stylesheet" href="/home.2504a112.css">
-    <script type="module" src="/home.6bfd0d8b.js"></script>
+    <link rel="stylesheet" href="/home.1779f9b9.css"> 
+    <script type="module" src="/FinTrack.ef49764f.js"></script><script type="module" src="/home.6bfd0d8b.js"></script>
+    <script type="module" src="/home.d980dd34.js"></script>
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="header-left">
-                <img src="/logoFintonic.44cab92e.svg" alt="Logo Fintonic" class="logo-icon">
+                <img src="/logoFintonic.44cab92e.svg" alt="Logo Fintonic" class="logo-icon" id="logo-home">
             </div>
             <h1 class="welcome-message">Bienvenido, <span id="user-name">Pepe</span></h1>
             <div class="header-right">
@@ -41,6 +43,15 @@
             </a>
             
         </nav>
+
+        <aside id="sidebar" class="sidebar">
+            <button class="close-btn" id="close-sidebar">&times;</button>
+            <h2>Menú</h2>
+            <ul>
+                <li><a href="/pages/profile.html" class="btn-custom sidebar-btn">Perfil</a></li>
+                <li><a href="#" class="btn-custom sidebar-btn" id="logout-link">Cerrar Sesión</a></li>
+            </ul>
+        </aside>
     </div>
 </body>
 </html>
