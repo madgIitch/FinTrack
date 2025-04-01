@@ -665,12 +665,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // Import the functions you need from the SDKs you need
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+// ... other imports and Firebase initialization ...
 parcelHelpers.export(exports, "app", ()=>app);
 parcelHelpers.export(exports, "auth", ()=>auth);
 parcelHelpers.export(exports, "db", ()=>db);
+parcelHelpers.export(exports, "onAuthStateChanged", ()=>(0, _auth.onAuthStateChanged));
+parcelHelpers.export(exports, "doc", ()=>(0, _firestore.doc));
+parcelHelpers.export(exports, "getDoc", ()=>(0, _firestore.getDoc));
+parcelHelpers.export(exports, "getFirestore", ()=>(0, _firestore.getFirestore));
 var _app = require("firebase/app");
-var _auth = require("firebase/auth");
-var _firestore = require("firebase/firestore");
+var _auth = require("firebase/auth"); // Import onAuthStateChanged
+var _firestore = require("firebase/firestore"); // Import Firestore functions
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 // Your web app's Firebase configuration

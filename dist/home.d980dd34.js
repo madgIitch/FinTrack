@@ -664,45 +664,68 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"7XxzW":[function(require,module,exports,__globalThis) {
 var _firebaseJs = require("./firebase.js"); // Importa la instancia de auth de Firebase
 var _auth = require("firebase/auth");
+console.log('sidebar.js loaded');
 document.addEventListener('DOMContentLoaded', ()=>{
+    console.log('sidebar.js DOMContentLoaded');
     const logoHome = document.querySelector('.logo-icon');
     const sidebar = document.getElementById('sidebar');
     const closeSidebarBtn = document.getElementById('close-sidebar');
     const logoutLink = document.getElementById('logout-link');
+    console.log('sidebar.js elements:', {
+        logoHome,
+        sidebar,
+        closeSidebarBtn,
+        logoutLink
+    });
     if (logoHome && sidebar && closeSidebarBtn && logoutLink) {
+        console.log('sidebar.js All elements found.');
         logoHome.addEventListener('click', ()=>{
+            console.log('sidebar.js logoHome clicked');
             sidebar.classList.toggle('open');
+            console.log('sidebar.js sidebar.classList:', sidebar.classList);
         });
         closeSidebarBtn.addEventListener('click', ()=>{
+            console.log('sidebar.js closeSidebarBtn clicked');
             sidebar.classList.remove('open');
+            console.log('sidebar.js sidebar.classList:', sidebar.classList);
         });
         logoutLink.addEventListener('click', (event)=>{
+            console.log('sidebar.js logoutLink clicked');
             event.preventDefault(); // Evita la redirección por defecto del enlace
             (0, _auth.signOut)((0, _firebaseJs.auth)).then(()=>{
+                console.log("sidebar.js Cierre de sesi\xf3n exitoso.");
                 // Cierre de sesión exitoso, redirige a la página de inicio de sesión
                 window.location.href = "../index.html";
             }).catch((error)=>{
-                console.error("Error al cerrar sesi\xf3n:", error);
-                alert("Error al cerrar sesi\xf3n. Int\xe9ntalo de nuevo.");
+                console.error("sidebar.js Error al cerrar sesi\xf3n:", error);
+                alert("sidebar.js Error al cerrar sesi\xf3n. Int\xe9ntalo de nuevo.");
             });
         });
         // Función para marcar el enlace activo como seleccionado (opcional)
         function markActiveLink() {
+            console.log('sidebar.js markActiveLink called');
             const currentPage = window.location.pathname;
             const profileLink = document.querySelector('#sidebar a[href="profile.html"]');
+            console.log('sidebar.js markActiveLink elements:', {
+                profileLink,
+                logoutLink
+            });
             if (profileLink && logoutLink) {
+                console.log('sidebar.js profileLink and logoutLink found in markActiveLink');
                 if (currentPage.includes("profile.html")) {
                     profileLink.classList.add('selected');
                     logoutLink.classList.remove('selected');
+                    console.log('sidebar.js markActiveLink profile.html active');
                 } else {
                     profileLink.classList.remove('selected');
                     logoutLink.classList.remove('selected');
+                    console.log('sidebar.js markActiveLink profile.html not active');
                 // Puedes añadir lógica para marcar otros enlaces si tienes más secciones
                 }
-            } else console.warn("No se encontraron los elementos profileLink o logoutLink en esta p\xe1gina.");
+            } else console.warn("sidebar.js No se encontraron los elementos profileLink o logoutLink en esta p\xe1gina.");
         }
         markActiveLink(); // Llama a la función al cargar la página
-    }
+    } else console.log('sidebar.js One or more elements (logoHome, sidebar, closeSidebarBtn, logoutLink) are missing.');
 });
 
 },{"./firebase.js":"24zHi","firebase/auth":"4ZBbi"}]},["imuXp","7XxzW"], "7XxzW", "parcelRequire94c2")
