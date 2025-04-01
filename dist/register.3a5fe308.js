@@ -667,7 +667,6 @@ var _auth = require("firebase/auth");
 var _firestore = require("firebase/firestore");
 document.addEventListener('DOMContentLoaded', ()=>{
     const form = document.getElementById('register-form');
-    // Corregimos aquí:
     const steps = Array.from(document.querySelectorAll('.step'));
     const nextStepButtons = document.querySelectorAll('.next-step');
     const emailInput = document.getElementById('email');
@@ -698,13 +697,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (methods.length > 0) emailExistsAlert.style.display = 'block';
             else {
                 emailExistsAlert.style.display = 'none';
-                console.log("Enviando correo de verificaci\xf3n...");
-                await (0, _auth.sendEmailVerification)((0, _firebaseJs.auth).currentUser);
-                console.log("Correo de verificaci\xf3n enviado.");
-                alert("Se ha enviado un correo de verificaci\xf3n a tu direcci\xf3n de correo electr\xf3nico. Por favor, verifica tu correo.");
-                console.log("Llamando a showStep(2)"); // Cambiado a 2
+                console.log("Correo disponible.");
                 showStep(2); // Ir al paso de contraseña
-                console.log("showStep(2) ejecutado.");
             }
         } catch (error) {
             console.error("Error al verificar el correo:", error);
@@ -729,9 +723,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             return;
         }
         try {
-            // Creamos el usuario (el correo se verificará por el enlace del email)
+            console.log("Enviando correo de verificaci\xf3n...");
+            // Intentar crear el usuario primero para que auth.currentUser esté disponible
             const userCredential = await (0, _auth.createUserWithEmailAndPassword)((0, _firebaseJs.auth), emailForVerification, password);
             const user = userCredential.user;
+            console.log("Usuario creado, enviando correo de verificaci\xf3n...");
+            await (0, _auth.sendEmailVerification)(user);
+            console.log("Correo de verificaci\xf3n enviado.");
             const userData = {
                 email: emailForVerification,
                 firstName: nombre,
@@ -746,6 +744,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
             let errorMessage = "Error durante el registro. Int\xe9ntalo de nuevo.";
             if (error.code === 'auth/email-already-in-use') errorMessage = "Este correo electr\xf3nico ya est\xe1 en uso.";
             else if (error.code === 'auth/weak-password') errorMessage = "La contrase\xf1a debe tener al menos 6 caracteres.";
+            else if (error.code === 'auth/network-request-failed') errorMessage = "Error de red. Por favor, int\xe9ntalo de nuevo.";
+            else errorMessage = error.message; // Mostrar el mensaje de error completo para depuración
             alert(errorMessage);
         }
     });

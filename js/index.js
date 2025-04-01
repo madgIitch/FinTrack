@@ -9,13 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Listener para el estado de autenticación
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            // El usuario ya está autenticado, redirige directamente a home.html
-            console.log('Usuario ya autenticado:', user);
-            window.location.href = 'pages/home.html';
+            // El usuario ya está autenticado
+            if (user.emailVerified) {
+                console.log('Usuario autenticado y correo verificado:', user);
+                window.location.href = 'pages/home.html';
+            } else {
+                console.log('Usuario autenticado pero correo no verificado:', user);
+                alert('Por favor, verifica tu dirección de correo electrónico antes de iniciar sesión.');
+                // Opcionalmente, podrías ofrecer un botón para reenviar el correo de verificación aquí
+                // sendEmailVerification(user).then(() => {
+                //     alert('Se ha enviado un nuevo correo de verificación.');
+                // });
+            }
         } else {
             // El usuario no está autenticado, muestra el formulario de inicio de sesión
             console.log('Usuario no autenticado, mostrando formulario de inicio de sesión.');
-            // Aquí puedes dejar el código existente para el envío del formulario de login
             if (loginForm) {
                 loginForm.addEventListener('submit', async (event) => {
                     event.preventDefault();
@@ -28,11 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         await setPersistence(auth, browserLocalPersistence);
                         const userCredential = await signInWithEmailAndPassword(auth, email, password);
                         const user = userCredential.user;
-                        console.log('Usuario logueado:', user);
-                        console.log('Intentando redirigir a home.html'); // <--- AÑADE ESTA LÍNEA
-                        window.location.href = 'pages/home.html';
-                        // Redirigir a la página principal
-                        window.location.href = 'pages/home.html';
+
+                        if (user.emailVerified) {
+                            console.log('Usuario logueado y correo verificado:', user);
+                            window.location.href = 'pages/home.html';
+                        } else {
+                            console.log('Usuario logueado pero correo no verificado:', user);
+                            alert('Por favor, verifica tu dirección de correo electrónico antes de continuar.');
+                            // Opcionalmente, podrías ofrecer un botón para reenviar el correo de verificación aquí
+                            // sendEmailVerification(user).then(() => {
+                            //     alert('Se ha enviado un nuevo correo de verificación.');
+                            // });
+                        }
+
                     } catch (error) {
                         console.error('Error al iniciar sesión:', error);
                         let errorMessage = 'Error al iniciar sesión. Verifica tu correo electrónico y contraseña.';

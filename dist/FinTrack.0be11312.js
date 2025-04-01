@@ -671,13 +671,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
     // Listener para el estado de autenticación
     (0, _auth.onAuthStateChanged)((0, _firebaseJs.auth), (user)=>{
         if (user) {
-            // El usuario ya está autenticado, redirige directamente a home.html
-            console.log('Usuario ya autenticado:', user);
-            window.location.href = 'pages/home.html';
+            // El usuario ya está autenticado
+            if (user.emailVerified) {
+                console.log('Usuario autenticado y correo verificado:', user);
+                window.location.href = 'pages/home.html';
+            } else {
+                console.log('Usuario autenticado pero correo no verificado:', user);
+                alert("Por favor, verifica tu direcci\xf3n de correo electr\xf3nico antes de iniciar sesi\xf3n.");
+            // Opcionalmente, podrías ofrecer un botón para reenviar el correo de verificación aquí
+            // sendEmailVerification(user).then(() => {
+            //     alert('Se ha enviado un nuevo correo de verificación.');
+            // });
+            }
         } else {
             // El usuario no está autenticado, muestra el formulario de inicio de sesión
             console.log("Usuario no autenticado, mostrando formulario de inicio de sesi\xf3n.");
-            // Aquí puedes dejar el código existente para el envío del formulario de login
             if (loginForm) loginForm.addEventListener('submit', async (event)=>{
                 event.preventDefault();
                 const email = emailInput.value;
@@ -687,11 +695,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     await (0, _auth.setPersistence)((0, _firebaseJs.auth), (0, _auth.browserLocalPersistence));
                     const userCredential = await (0, _auth.signInWithEmailAndPassword)((0, _firebaseJs.auth), email, password);
                     const user = userCredential.user;
-                    console.log('Usuario logueado:', user);
-                    console.log('Intentando redirigir a home.html'); // <--- AÑADE ESTA LÍNEA
-                    window.location.href = 'pages/home.html';
-                    // Redirigir a la página principal
-                    window.location.href = 'pages/home.html';
+                    if (user.emailVerified) {
+                        console.log('Usuario logueado y correo verificado:', user);
+                        window.location.href = 'pages/home.html';
+                    } else {
+                        console.log('Usuario logueado pero correo no verificado:', user);
+                        alert("Por favor, verifica tu direcci\xf3n de correo electr\xf3nico antes de continuar.");
+                    // Opcionalmente, podrías ofrecer un botón para reenviar el correo de verificación aquí
+                    // sendEmailVerification(user).then(() => {
+                    //     alert('Se ha enviado un nuevo correo de verificación.');
+                    // });
+                    }
                 } catch (error) {
                     console.error("Error al iniciar sesi\xf3n:", error);
                     let errorMessage = "Error al iniciar sesi\xf3n. Verifica tu correo electr\xf3nico y contrase\xf1a.";

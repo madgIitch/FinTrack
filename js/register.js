@@ -4,7 +4,6 @@ import { setDoc, doc } from "firebase/firestore";
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('register-form');
-    // Corregimos aquí:
     const steps = Array.from(document.querySelectorAll('.step'));
     const nextStepButtons = document.querySelectorAll('.next-step');
     const emailInput = document.getElementById('email');
@@ -43,13 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 emailExistsAlert.style.display = 'block';
             } else {
                 emailExistsAlert.style.display = 'none';
-                console.log("Enviando correo de verificación...");
-                await sendEmailVerification(auth.currentUser);
-                console.log("Correo de verificación enviado.");
-                alert('Se ha enviado un correo de verificación a tu dirección de correo electrónico. Por favor, verifica tu correo.');
-                console.log("Llamando a showStep(2)"); // Cambiado a 2
+                console.log("Correo disponible.");
                 showStep(2); // Ir al paso de contraseña
-                console.log("showStep(2) ejecutado.");
             }
         } catch (error) {
             console.error("Error al verificar el correo:", error);
@@ -79,9 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            // Creamos el usuario (el correo se verificará por el enlace del email)
+            console.log("Enviando correo de verificación...");
+            // Intentar crear el usuario primero para que auth.currentUser esté disponible
             const userCredential = await createUserWithEmailAndPassword(auth, emailForVerification, password);
             const user = userCredential.user;
+            console.log("Usuario creado, enviando correo de verificación...");
+            await sendEmailVerification(user);
+            console.log("Correo de verificación enviado.");
 
             const userData = {
                 email: emailForVerification,
@@ -102,6 +100,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 errorMessage = 'Este correo electrónico ya está en uso.';
             } else if (error.code === 'auth/weak-password') {
                 errorMessage = 'La contraseña debe tener al menos 6 caracteres.';
+            } else if (error.code === 'auth/network-request-failed') {
+                errorMessage = 'Error de red. Por favor, inténtalo de nuevo.';
+            } else {
+                errorMessage = error.message; // Mostrar el mensaje de error completo para depuración
             }
             alert(errorMessage);
         }
