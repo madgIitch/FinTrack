@@ -132,3 +132,25 @@ body {
 .btn-custom + .btn-custom {
     margin-top: 15px;
 }
+
+/* Estilos para el formulario de recuperación */
+#reset-form {
+    display: none; /* Inicialmente oculto */
+    position: relative;
+    z-index: 3; /* Mayor que el login-container (z-index:2) */
+    width: 90%;
+    max-width: 380px;
+    margin: 20px auto;
+    background-color:linear-gradient(to bottom, #e0e0e0, #f4f4f4);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Opcional: darle estilo a los enlaces y botones internos del reset-form */
+#reset-form .btn-custom {
+    margin-top: 15px;
+}
+#reset-form .input-field {
+    background-color: #252525; 
+}

@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailExistsAlert = document.getElementById('email-exists-alert');
     let currentStep = 0;
     let emailForVerification = '';
+    const progressBar = document.getElementById('progress-bar');
+    function updateProgress(stepIndex) {
+        const totalSteps = steps.length;
+        const progress = ((stepIndex + 1) / totalSteps) * 100;
+        progressBar.style.width = `${progress}%`;
+    }
+    updateProgress(0);
+
+
 
     function showStep(stepIndex) {
         steps.forEach((step, index) => {
@@ -22,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         currentStep = stepIndex;
+        updateProgress(stepIndex);
+
     }
 
     nextStepButtons.forEach(button => {
