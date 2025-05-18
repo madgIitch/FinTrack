@@ -4,16 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Perfil de Usuario</title>
+  
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="../css/profile.css" />
   <link rel="stylesheet" href="../css/responsive.css">
+  
+  <!-- Iconos de Material -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  
+  <!-- Manifest para PWA -->
   <link rel="manifest" href="../manifest.json" />
+  
+  <!-- SDK de Plaid para integración bancaria -->
   <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+  
+  <!-- Lógica del perfil -->
   <script type="module" src="../js/profile.js"></script>
 </head>
 <body>
   <div class="container">
-    <!-- Header -->
+    
+    <!-- Header de la página de perfil -->
     <header class="header">
       <div class="header-left">
         <img src="../img/logoFintonic.svg" alt="Logo Fintonic" class="logo-icon-img" />
@@ -26,9 +37,10 @@
       </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Contenido principal del perfil -->
     <main class="content">
-      <!-- Información personal -->
+      
+      <!-- Información personal del usuario -->
       <div class="card">
         <h2>Información Personal</h2>
         <div id="profile-info">
@@ -38,37 +50,38 @@
         </div>
       </div>
 
-      <!-- Cuentas Bancarias -->
+      <!-- Cuentas Bancarias Vinculadas -->
       <h2 style="width: 90%; max-width: 500px;">Cuentas Bancarias Vinculadas</h2>
       <p id="linked-accounts-message" style="width: 90%; max-width: 500px;">
         No hay cuentas bancarias vinculadas actualmente.
       </p>
 
-      <!-- Envoltorio principal del slider -->
+      <!-- Slider de cuentas bancarias -->
       <div class="slider-wrapper">
-        <!-- Flecha Izquierda -->
+        
+        <!-- Flecha Izquierda del slider -->
         <button class="slider-arrow left-arrow" id="slider-prev">
           <span class="material-icons">navigate_before</span>
         </button>
 
-        <!-- Contenedor principal del slider (oculta overflow) -->
+        <!-- Contenedor principal del slider -->
         <div class="accounts-slider-container">
-          <!-- Este div debe tener la clase "accounts-slider" y el ID "linked-accounts-list" -->
+          <!-- Este div contendrá las cuentas bancarias inyectadas mediante JS -->
           <div class="accounts-slider" id="linked-accounts-list">
-            <!-- Aquí se inyectan las cuentas (slides) mediante JS -->
+            <!-- Las cuentas se generan dinámicamente aquí -->
           </div>
         </div>
 
-        <!-- Flecha Derecha -->
+        <!-- Flecha Derecha del slider -->
         <button class="slider-arrow right-arrow" id="slider-next">
           <span class="material-icons">navigate_next</span>
         </button>
       </div>
 
-      <!-- Indicadores (puntitos) -->
+      <!-- Indicadores de posición del slider (puntos) -->
       <div class="slider-dots" id="slider-dots"></div>
 
-      <!-- Botón para vincular cuenta -->
+      <!-- Botón para vincular nuevas cuentas -->
       <button id="link-bank-button" class="btn-custom" style="width: 90%; max-width: 500px;">
         Vincular Cuenta Bancaria
       </button>
@@ -90,6 +103,7 @@
         <span>Ajustes</span>
       </a>
     </nav>
+    
   </div>
 </body>
 </html>

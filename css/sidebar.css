@@ -1,35 +1,50 @@
-/* sidebar.css */
+/* ========================
+   Estilos Generales del Sidebar
+======================== */
+
+/* Contenedor principal del sidebar */
 .sidebar {
     position: fixed;
     top: 0;
-    left: 0; 
-    width: 300px; 
+    left: 0;
+    width: 300px;
     height: 100%;
     background-color: #f0f0f0;
-    transform: translateX(-100%); 
+    transform: translateX(-100%); /* Oculto inicialmente */
     transition: transform 0.3s ease-in-out;
-    z-index: 1000; 
+    z-index: 1000; /* Por encima del contenido principal */
     padding: 20px;
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2); /* Cambiamos el box-shadow para que esté a la derecha */
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra a la derecha */
 }
 
+/* Mostrar el sidebar cuando tiene la clase 'open' */
 .sidebar.open {
-    transform: translateX(0); /* Mostrar el panel lateral */
+    transform: translateX(0);
 }
 
+/* Título del menú lateral */
 .sidebar h2 {
     margin-top: 0;
+    color: #333;
 }
 
+/* ========================
+   Lista de Enlaces
+======================== */
+
+/* Estilo para las listas del menú */
 .sidebar ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
+/* Espaciado entre elementos de la lista */
 .sidebar ul li {
     margin-bottom: 10px;
 }
 
+/* Estilo para los enlaces */
 .sidebar ul li a {
     display: block;
     padding: 10px;
@@ -37,23 +52,35 @@
     color: #333;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
 }
 
+/* Efecto hover para los enlaces */
 .sidebar ul li a:hover {
     background-color: #ccc;
 }
 
+/* ========================
+   Botón de Cierre
+======================== */
+
+/* Estilo del botón de cierre */
 .close-btn {
     position: absolute;
     top: 10px;
-    right: 10px; /* Mantenemos el botón de cierre a la derecha del sidebar */
+    right: 10px;
     font-size: 24px;
     cursor: pointer;
     background: none;
     border: none;
+    color: #333;
 }
 
+/* ========================
+   Botones Personalizados (btn-custom)
+======================== */
 
+/* Estilo base para los botones personalizados */
 .sidebar ul li a.btn-custom {
     display: block;
     margin-bottom: 10px;
@@ -63,25 +90,27 @@
     line-height: 50px;
     height: 50px;
     border-radius: 4px;
-    background-color: #f0f0f0; /* Color de fondo base grisáceo */
-    color: #333; /* Color de texto base oscuro */
+    background-color: #f0f0f0; /* Fondo base gris claro */
+    color: #333; /* Texto oscuro */
     border: none;
     cursor: pointer;
     text-decoration: none;
     box-sizing: border-box;
-    transition: background-color 0.2s ease-in-out; /* Transición suave para el hover */
+    transition: background-color 0.2s ease-in-out;
 }
 
+/* Efecto hover para los botones personalizados */
 .sidebar ul li a.btn-custom:hover {
-    background-color: #e0e0e0; /* Gris más claro al pasar el ratón */
+    background-color: #e0e0e0; /* Fondo más claro al pasar el ratón */
 }
 
-/* Estilo para el botón "seleccionado" (puedes añadir esta clase con JS) */
+/* Botón seleccionado */
 .sidebar ul li a.btn-custom.selected {
-    background-color: #202124; /* Color de fondo negro */
-    color: white;
+    background-color: #202124; /* Fondo oscuro */
+    color: white; /* Texto blanco */
 }
 
+/* Eliminar margen inferior del último botón */
 .sidebar ul li:last-child a.btn-custom {
     margin-bottom: 0;
 }

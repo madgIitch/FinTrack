@@ -1,35 +1,46 @@
-/* Estilos generales para la página home */
+/* ===========================
+   Estilos Generales
+=========================== */
+
+/* Reset de márgenes y fuente base */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4);
+    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4); /* Fondo con gradiente */
     color: #333;
 }
 
+/* Contenedor principal que envuelve todo el contenido */
 .container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Para asegurar que el contenido esté por encima de otros elementos */
 }
 
-/* Cabecera */
+/* ===========================
+   Cabecera
+=========================== */
+
+/* Estilo general para la cabecera */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: transparent;
+    background-color: transparent; /* Fondo transparente para superponer con el gradiente */
 }
 
+/* Contenedor para el logo y mensaje de bienvenida */
 .header-left {
     display: flex;
     align-items: center;
 }
 
+/* Estilo para el logo en la cabecera */
 .logo-icon {
-    color: white;
+    color: white; /* Color de texto para íconos */
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -40,16 +51,19 @@ body {
     margin-right: 15px;
 }
 
+/* Estilo para el mensaje de bienvenida */
 .welcome-message {
     font-size: 1.2em;
     margin: 0;
 }
 
+/* Contenedor para los botones de notificación */
 .header-right {
     display: flex;
     align-items: center;
 }
 
+/* Estilo para el botón de notificaciones */
 .notification-button {
     background: none;
     border: none;
@@ -59,31 +73,41 @@ body {
     border-radius: 50%;
 }
 
+/* Tamaño del ícono de notificación */
 .notification-button .material-icons {
     font-size: 24px;
 }
 
-/* Contenido principal */
+/* ===========================
+   Contenido Principal
+=========================== */
+
+/* Contenedor principal del contenido */
 .content {
     flex-grow: 1;
     padding: 20px;
     margin-top: 60px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrar los elementos del contenido horizontalmente */
-    gap: 20px; /* Espacio entre las secciones del contenido */
+    align-items: center; /* Centra horizontalmente los elementos */
+    gap: 20px; /* Espacio entre secciones */
 }
 
-/* Estilo para las tarjetas (Saldo y Evolución de Gastos) */
+/* ===========================
+   Estilo para Tarjetas
+=========================== */
+
+/* Diseño de las tarjetas, como saldo y análisis financiero */
 .card {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px; /* Ancho máximo similar al contenedor de login */
+    max-width: 400px; /* Ancho máximo para que se parezca al contenedor de login */
 }
 
+/* Título de las tarjetas */
 .card h2 {
     margin-top: 0;
     margin-bottom: 15px;
@@ -91,6 +115,7 @@ body {
     color: #555;
 }
 
+/* Estilo para el saldo actual */
 .balance p.current-balance {
     font-size: 1.8em;
     font-weight: bold;
@@ -98,7 +123,11 @@ body {
     margin-bottom: 0;
 }
 
-/* Barra de navegación inferior */
+/* ===========================
+   Barra de Navegación Inferior
+=========================== */
+
+/* Contenedor de la barra de navegación inferior */
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -110,9 +139,10 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 3;
+    z-index: 3; /* Asegurar que esté por encima del contenido principal */
 }
 
+/* Estilo para los enlaces de navegación */
 .bottom-nav a {
     display: flex;
     flex-direction: column;
@@ -122,10 +152,12 @@ body {
     font-size: 0.8em;
 }
 
+/* Estado activo de los enlaces de navegación */
 .bottom-nav a.active {
     color: #252525;
 }
 
+/* Estilo para los íconos en la barra de navegación */
 .bottom-nav a .material-icons {
     font-size: 24px;
     margin-bottom: 5px;

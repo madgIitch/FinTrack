@@ -1,13 +1,10 @@
-// Import the functions you need from the SDKs you need
+// Importar las funciones necesarias del SDK de Firebase
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged } from 'firebase/auth'; // Import onAuthStateChanged
-import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, doc, getDoc } from 'firebase/firestore';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// Configuración de Firebase para la app FinTrack
+// Estas claves son específicas para este proyecto y se deben proteger en producción
 const firebaseConfig = {
     apiKey: "AIzaSyCV05aIQnCR5803w-cWAKxc6U23bwF13-0",
     authDomain: "fintrack-1bced.firebaseapp.com",
@@ -18,10 +15,12 @@ const firebaseConfig = {
     measurementId: "G-J87Z3NZJ55"
 };
 
-// Initialize Firebase
+// Inicialización de Firebase con la configuración especificada
 const app = initializeApp(firebaseConfig);
+
+// Inicialización de los servicios de autenticación y Firestore
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ... other imports and Firebase initialization ...
+// Exportar las instancias para ser usadas en otros módulos
 export { app, auth, db, onAuthStateChanged, doc, getDoc, getFirestore };

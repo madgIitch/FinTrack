@@ -4,45 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FinTrack</title>
+  
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/responsive.css" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  
+  <!-- Manifest para PWA -->
   <link rel="manifest" href="manifest.json" />
+  
+  <!-- Firebase (Compatibilidad) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  
+  <!-- Lógica de la app -->
   <script type="module" src="js/index.js"></script>
 </head>
 <body>
   <div class="background-container"></div>
 
+  <!-- Contenedor del logo -->
   <div class="logo-container">
     <img src="./img/logoFintonic.svg" alt="Logo Fintonic" class="logo">
   </div>
 
+  <!-- Contenedor del formulario de inicio de sesión -->
   <div class="login-container">
-    <!-- Formulario de inicio de sesión -->
     <form id="login-form">
+      <!-- Campo de correo electrónico -->
       <div class="input-field">
         <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
       </div>
-  
+      
+      <!-- Campo de contraseña -->
       <div class="input-field password-field">
         <input type="password" id="password" name="password" placeholder="Contraseña" required>
         <i class="material-icons">visibility</i>
       </div>
-  
+      
+      <!-- Botón para iniciar sesión -->
       <button type="submit" class="btn-custom" id="login-button">Iniciar sesión</button>
     </form>
-  
-    <!-- Botón de registro -->
+
+    <!-- Enlaces adicionales -->
     <a href="/pages/register.html" id="register-link" class="btn-custom">Registro</a>
-  
-    <!-- Botón de recuperación de contraseña -->
     <a href="#" id="show-reset-form" class="btn-custom">¿Olvidaste tu contraseña?</a>
   </div>
   
-  <!-- Formulario de recuperación de contraseña (inicialmente oculto) -->
+  <!-- Formulario de recuperación de contraseña (oculto por defecto) -->
   <form id="reset-form" style="display: none;">
     <div class="input-field">
       <input type="email" id="reset-email" name="reset-email" placeholder="Correo electrónico" required>

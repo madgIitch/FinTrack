@@ -3,9 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { openDB } from 'idb';
 
-//
-// ——————  Saludo personalizado ——————
-//
+
 
 // Referencia al span del header
 const userNameSpan = document.getElementById('user-name');
@@ -22,9 +20,7 @@ if (storedFirst || storedLast) {
   updateWelcomeMessage(storedFirst, storedLast);
 }
 
-//
-// ——————  Resto de tu código sin cambios ——————
-//
+
 
 // Configuración de la API Cloud Function
 const apiUrl =

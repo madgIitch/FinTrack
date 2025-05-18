@@ -1,20 +1,29 @@
-/* Fondo con gradiente */
+/* ========================
+   Fondo y Estructura Básica
+======================== */
+
+/* Elimina márgenes y establece la fuente base */
 body {
-    margin: 0; /* Aseguramos que no haya márgenes en el body */
+    margin: 0;
     font-family: Arial, sans-serif;
 }
 
+/* Fondo con gradiente */
 .background-container {
-    position: fixed; /* Fija el fondo en toda la página */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4); /* Gradiente */
-    z-index: 1; /* Asegura que esté detrás de otros elementos */
+    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4);
+    z-index: 1; /* Detrás de los elementos principales */
 }
 
-/* Logo */
+/* ========================
+   Logo
+======================== */
+
+/* Contenedor para el logo en la parte superior */
 .logo-container {
     display: flex;
     justify-content: center;
@@ -24,58 +33,66 @@ body {
     top: 10%;
     left: 0;
     padding: 20px 0;
-    z-index: 2; /* Asegura que esté por encima del fondo */
+    z-index: 2; /* Asegura que el logo esté encima del fondo */
 }
 
+/* Estilo del logo */
 .logo {
     width: 80px;
     height: auto;
 }
 
-/* Contenedor del login */
+/* ========================
+   Contenedor de Login y Registro
+======================== */
+
+/* Caja que contiene el formulario de login */
 .login-container {
     width: 90%;
     max-width: 380px;
     text-align: center;
-    margin-top: 300px; /* Ajusta el margen para que no se superponga con el logo */
-    position: relative; /* Asegura que esté por encima del fondo */
+    margin-top: 300px; /* Ajusta para que no se superponga con el logo */
+    position: relative;
     z-index: 2;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Contenedor para el register */
+/* Caja que contiene el formulario de registro */
 .register-container {
     width: 90%;
     max-width: 380px;
     text-align: left;
-    margin-top: 200px; /* Ajusta el margen para que no se superponga con el logo */
-    position: relative; /* Asegura que esté por encima del fondo */
+    margin-top: 200px; /* Ajusta para que no se superponga con el logo */
+    position: relative;
     z-index: 2;
     margin-left: auto;
     margin-right: auto;
 }
-.register-container h2{
+
+/* Títulos en el registro */
+.register-container h2 {
     font-size: 1em;
     margin-bottom: 20px;
-    color : #333
-    
-
+    color: #333;
 }
 
-/* Campos de entrada pruebaa git */
-.input-field {
+/* ========================
+   Campos de Entrada
+======================== */
 
+/* Diseño general de los campos de entrada */
+.input-field {
     background-color: #252525;
     border-radius: 4px;
     padding: 10px 15px;
     display: flex;
     align-items: center;
-    margin-top: auto;
     margin-bottom: 20px;
     height: 50px;
 }
 
+/* Estilo para los campos de texto */
 .input-field input {
     border: none;
     background: none;
@@ -86,16 +103,22 @@ body {
     font-size: 16px;
 }
 
+/* Estilo para los placeholders */
 .input-field input::placeholder {
     color: #b0b0b0;
     font-size: 16px;
 }
 
-/* Icono de visibilidad en el campo de contraseña */
+/* ========================
+   Icono de Visibilidad en Contraseñas
+======================== */
+
+/* Posicionamiento del icono de visibilidad */
 .password-field {
     position: relative;
 }
 
+/* Estilo del icono de visibilidad */
 .password-field .material-icons {
     position: absolute;
     right: 15px;
@@ -106,12 +129,16 @@ body {
     font-size: 24px;
 }
 
-/* Botones */
+/* ========================
+   Botones
+======================== */
+
+/* Diseño general de los botones */
 .btn-custom {
     background-color: #252525;
     color: white;
     border-radius: 30px;
-    width: 100%; /* Asegura que ambos tengan el mismo ancho */
+    width: 100%;
     margin-top: 15px;
     padding: 15px;
     font-size: 18px;
@@ -121,9 +148,11 @@ body {
     text-align: center;
     display: inline-block;
     text-decoration: none;
-    box-sizing: border-box; /* Incluye el padding en el ancho total */
+    box-sizing: border-box;
+    transition: background-color 0.3s;
 }
 
+/* Efecto hover para los botones */
 .btn-custom:hover {
     background-color: #1b1b1b;
 }
@@ -133,24 +162,30 @@ body {
     margin-top: 15px;
 }
 
-/* Estilos para el formulario de recuperación */
+/* ========================
+   Formulario de Recuperación de Contraseña
+======================== */
+
+/* Caja que contiene el formulario de recuperación de contraseña */
 #reset-form {
-    display: none; /* Inicialmente oculto */
+    display: none; /* Oculto inicialmente */
     position: relative;
-    z-index: 3; /* Mayor que el login-container (z-index:2) */
+    z-index: 3; /* Mayor que el login-container (z-index: 2) */
     width: 90%;
     max-width: 380px;
     margin: 20px auto;
-    background-color:linear-gradient(to bottom, #e0e0e0, #f4f4f4);
+    background-color: #f4f4f4;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
 }
 
-/* Opcional: darle estilo a los enlaces y botones internos del reset-form */
+/* Estilo para los campos del formulario de recuperación */
+#reset-form .input-field {
+    background-color: #252525;
+}
+
+/* Botones internos del formulario de recuperación */
 #reset-form .btn-custom {
     margin-top: 15px;
-}
-#reset-form .input-field {
-    background-color: #252525; 
 }

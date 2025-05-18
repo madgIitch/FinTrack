@@ -1,40 +1,40 @@
-/* css/transactions.css */
+/* ========================
+   Estilos Generales
+======================== */
 
-/* ========================================
-   Estilos generales de la página
-   ======================================== */
-
-   body {
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #e0e0e0, #f4f4f4);
     color: #333;
-  }
-  
-  .container {
+}
+
+.container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     position: relative;
     z-index: 2;
-  }
-  
-  /* Cabecera */
-  
-  .header {
+}
+
+/* ========================
+   Cabecera
+======================== */
+
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     background-color: transparent;
-  }
-  
-  .header-left {
+}
+
+.header-left {
     display: flex;
     align-items: center;
-  }
-  
-  .logo-icon {
+}
+
+.logo-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -42,79 +42,83 @@
     justify-content: center;
     align-items: center;
     margin-right: 15px;
-  }
-  
-  .welcome-message {
+}
+
+.welcome-message {
     font-size: 1.2em;
     margin: 0;
-  }
-  
-  .header-right {
+}
+
+.header-right {
     display: flex;
     align-items: center;
-  }
-  
-  .notification-button {
+}
+
+.notification-button {
     background: none;
     border: none;
     color: #252525;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
-  }
-  
-  .notification-button .material-icons {
+}
+
+.notification-button .material-icons {
     font-size: 24px;
-  }
-  
-  /* ========================================
-     Sección de transacciones
-     ======================================== */
-  
-  #transactions-section {
+}
+
+/* ========================
+   Sección de Transacciones
+======================== */
+
+#transactions-section {
     width: 90%;
     max-width: 600px;
     margin: 0 auto 20px;
     padding-bottom: 60px; /* espacio para barra inferior */
-  }
-  
-  .offline-indicator {
+}
+
+.offline-indicator {
     background: #ffeb3b;
     color: #333;
     padding: 8px;
     border-radius: 4px;
     text-align: center;
     margin-bottom: 10px;
-  }
-  
-  .loading {
+}
+
+.loading {
     text-align: center;
     color: #666;
     padding: 20px 0;
-  }
-  
-  .category-group {
+}
+
+/* ========================
+   Agrupación por Categorías
+======================== */
+
+.category-group {
     margin-bottom: 20px;
-  }
-  
-  .category-group h3 {
+}
+
+.category-group h3 {
     margin-bottom: 10px;
     border-bottom: 1px solid #ddd;
     padding-bottom: 4px;
     font-size: 1.1em;
-  }
-  
-  /* ========================================
-     Ítems de transacción
-     ======================================== */
-  
-  .transaction-item {
+}
+
+/* ========================
+   Ítems de Transacción
+======================== */
+
+.transaction-item {
     background: #fff;
     padding: 12px;
     margin-bottom: 8px;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-  
+
     /* grid layout para acomodar cuenta, descripción, fecha, importe */
     display: grid;
     grid-template-columns: 1fr auto;
@@ -124,46 +128,47 @@
       "desc    amount"
       "date    date";
     gap: 4px 12px;
-  }
-  
-  .transaction-item .account-label {
+}
+
+.transaction-item .account-label {
     display: block;
     font-size: 0.85em;
     color: #555;
     margin-bottom: 4px;
-  }
-  
-  .transaction-item .desc {
+}
+
+.transaction-item .desc {
     grid-area: desc;
     font-weight: 500;
-  }
-  
-  .transaction-item .date {
+}
+
+.transaction-item .date {
     grid-area: date;
     font-size: 0.85em;
     color: #666;
-  }
-  
-  .transaction-item .amount {
+}
+
+.transaction-item .amount {
     grid-area: amount;
     font-weight: bold;
     align-self: center;
     justify-self: end;
-  }
-  
-  .transaction-item .amount.debit {
+}
+
+/* Colores para débitos y créditos */
+.transaction-item .amount.debit {
     color: #e53935;
-  }
-  
-  .transaction-item .amount.credit {
+}
+
+.transaction-item .amount.credit {
     color: #43a047;
-  }
-  
-  /* ========================================
-     Contenido principal (cards, balance…)
-     ======================================== */
-  
-  .content {
+}
+
+/* ========================
+   Contenido Principal
+======================== */
+
+.content {
     flex-grow: 1;
     padding: 20px;
     margin-top: 60px;
@@ -171,36 +176,36 @@
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
-  
-  .card {
+}
+
+.card {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 90%;
     max-width: 400px;
-  }
-  
-  .card h2 {
+}
+
+.card h2 {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.1em;
     color: #555;
-  }
-  
-  .balance p.current-balance {
+}
+
+.balance p.current-balance {
     font-size: 1.8em;
     font-weight: bold;
     color: #252525;
     margin-bottom: 0;
-  }
-  
-  /* ========================================
-     Barra de navegación inferior
-     ======================================== */
-  
-  .bottom-nav {
+}
+
+/* ========================
+   Barra de Navegación Inferior
+======================== */
+
+.bottom-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -212,37 +217,37 @@
     left: 0;
     width: 100%;
     z-index: 3;
-  }
-  
-  .bottom-nav a {
+}
+
+.bottom-nav a {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #777;
     text-decoration: none;
     font-size: 0.8em;
-  }
-  
-  .bottom-nav a.active {
+}
+
+.bottom-nav a.active {
     color: #252525;
-  }
-  
-  .bottom-nav a .material-icons {
+}
+
+.bottom-nav a .material-icons {
     font-size: 24px;
     margin-bottom: 5px;
-  }
-  
-  /* ========================================
-     Responsive: colapsar grid en pantallas muy pequeñas
-     ======================================== */
-  
-  @media (max-width: 360px) {
+}
+
+/* ========================
+   Responsive: colapsar grid en pantallas pequeñas
+======================== */
+
+@media (max-width: 360px) {
     .transaction-item {
-      display: block;
+        display: block;
     }
+
     .transaction-item .amount {
-      position: static;
-      margin-top: 6px;
+        position: static;
+        margin-top: 6px;
     }
-  }
-  
+}

@@ -1,75 +1,98 @@
 /* ========================
    Global
 ======================== */
+
+/* Reset de márgenes y fuente base */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4);
+    background: linear-gradient(to bottom, #e0e0e0, #f4f4f4); /* Fondo con gradiente */
     color: #333;
-  }
-  
-  .container {
+}
+
+/* Contenedor principal */
+.container {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     position: relative;
-    z-index: 2;
-  }
-  
-  /* ========================
-     Cabecera
-  ======================== */
-  .header {
+    z-index: 2; /* Para asegurar que el contenido esté por encima de otros elementos */
+}
+
+/* ========================
+   Cabecera
+======================== */
+
+/* Estilo general para la cabecera */
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: transparent;
-  }
-  .header-left {
+    background-color: transparent; /* Fondo transparente para superponer con el gradiente */
+}
+
+/* Contenedor para el logo y mensaje de bienvenida */
+.header-left {
     display: flex;
     align-items: center;
-  }
-  .logo-icon-img {
+}
+
+/* Estilo para el logo en la cabecera */
+.logo-icon-img {
     width: 40px;
     height: auto;
     margin-right: 15px;
-  }
-  .welcome-message {
+}
+
+/* Estilo para el mensaje de bienvenida */
+.welcome-message {
     font-size: 1.2em;
     margin: 0;
-  }
-  .header-right {
+}
+
+/* Contenedor para los botones de notificación */
+.header-right {
     display: flex;
     align-items: center;
-  }
-  .notification-button {
+}
+
+/* Estilo para el botón de notificaciones */
+.notification-button {
     background: none;
     border: none;
     color: #252525;
     cursor: pointer;
     padding: 8px;
     border-radius: 50%;
-  }
-  .notification-button .material-icons {
+}
+
+/* Tamaño del ícono de notificación */
+.notification-button .material-icons {
     font-size: 24px;
-  }
-  
-  /* ========================
-     Contenido Principal
-  ======================== */
-  /* Reducimos el margin-top para subir todo */
-  .content {
+}
+
+/* ========================
+   Contenido Principal
+======================== */
+
+/* Contenedor principal del contenido */
+.content {
     flex-grow: 1;
     padding: 20px;
-    margin-top: 20px;  /* Antes estaba 60px o más */
+    margin-top: 20px; /* Reducido para ganar espacio vertical */
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
-  
-  .card {
+}
+
+/* ========================
+   Tarjetas de Perfil
+======================== */
+
+/* Diseño de las tarjetas, como información personal y cuentas */
+.card {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
@@ -77,27 +100,35 @@ body {
     width: 90%;
     max-width: 500px;
     margin-bottom: 20px;
-  }
-  .card h2 {
+}
+
+/* Títulos de las tarjetas */
+.card h2 {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.2em;
     color: #555;
-  }
-  .card p {
+}
+
+/* Texto de las tarjetas */
+.card p {
     margin-bottom: 10px;
     color: #444;
-  }
-  .card p strong {
+}
+
+/* Resaltar texto importante */
+.card p strong {
     font-weight: bold;
     color: #333;
     margin-right: 5px;
-  }
-  
-  /* ========================
-     Barra de Navegación Inferior
-  ======================== */
-  .bottom-nav {
+}
+
+/* ========================
+   Barra de Navegación Inferior
+======================== */
+
+/* Contenedor de la barra de navegación inferior */
+.bottom-nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -108,28 +139,35 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    z-index: 3;
-  }
-  .bottom-nav a {
+    z-index: 3; /* Asegurar que esté por encima del contenido principal */
+}
+
+/* Estilo para los enlaces de navegación */
+.bottom-nav a {
     display: flex;
     flex-direction: column;
     align-items: center;
     color: #777;
     text-decoration: none;
     font-size: 0.8em;
-  }
-  .bottom-nav a.active {
+}
+
+/* Estado activo de los enlaces de navegación */
+.bottom-nav a.active {
     color: #252525;
-  }
-  .bottom-nav a .material-icons {
+}
+
+/* Estilo para los íconos en la barra de navegación */
+.bottom-nav a .material-icons {
     font-size: 24px;
     margin-bottom: 5px;
-  }
-  
-  /* ========================
-     Botón Vincular Cuenta
-  ======================== */
-  #link-bank-button {
+}
+
+/* ========================
+   Botón Vincular Cuenta
+======================== */
+
+#link-bank-button {
     background-color: #222522;
     color: white;
     font-size: 1rem;
@@ -139,21 +177,26 @@ body {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  #link-bank-button:hover {
+    width: 90%;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+
+#link-bank-button:hover {
     background-color: #45a049;
     transform: scale(1.02);
-  }
-  #link-bank-button:active {
+}
+
+#link-bank-button:active {
     transform: scale(0.98);
-  }
-  
-  /* ========================
-     Slider con Flechas y Puntitos
-  ======================== */
-  
-  /* Cada tarjeta (slide) */
-  .linked-account {
+}
+
+/* ========================
+   Slider de Cuentas Bancarias
+======================== */
+
+/* Cada tarjeta (slide) */
+.linked-account {
     background-color: #fff;
     padding: 16px;
     margin: 0;
@@ -161,34 +204,34 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     flex: 0 0 100%;
-  }
-  
-  /* Permitir que las flechas (absolutas) no queden recortadas */
-  .slider-wrapper {
+}
+
+/* Contenedor del slider */
+.slider-wrapper {
     position: relative;
     width: 90%;
     max-width: 500px;
     margin: 0 auto 20px auto;
-    overflow: visible; /* <-- de 'hidden' a 'visible' para no cortar flechas */
-  }
-  
-  /* El contenedor de slides en sí mantiene overflow hidden para cortar las slides que no se ven */
-  .accounts-slider-container {
+    overflow: visible; /* Para permitir que las flechas no sean cortadas */
+}
+
+/* Contenedor interno del slider */
+.accounts-slider-container {
     width: 100%;
     overflow: hidden;
-  }
-  
-  .accounts-slider {
+}
+
+/* Lista de tarjetas (slides) */
+.accounts-slider {
     display: flex;
     transition: transform 0.4s ease-in-out;
-  }
-  
+}
+
 /* Flechas de navegación */
 .slider-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    /* Fondo blanco, sombra suave */
     background-color: #fff;
     border: none;
     padding: 8px;
@@ -197,38 +240,39 @@ body {
     border-radius: 50%;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     transition: background-color 0.2s, box-shadow 0.2s;
-    z-index: 9999; /* asegúrate de que queden encima de la tarjeta */
-  }
-  
-  /* Efecto hover */
-  .slider-arrow:hover {
+    z-index: 9999; /* Asegurar que las flechas queden siempre por encima */
+}
+
+.slider-arrow:hover {
     background-color: #f0f0f0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Aplica estilo al ícono de Material */
-  .slider-arrow .material-icons {
+}
+
+/* Íconos de las flechas */
+.slider-arrow .material-icons {
     font-size: 24px;
-    line-height: 1;
-  }
-  
-  /* Ajusta la posición horizontal de cada flecha */
-  .left-arrow {
+}
+
+/* Posición de las flechas */
+.left-arrow {
     left: 0;
-    transform: translate(-110%, -50%); 
-  }
-  .right-arrow {
+    transform: translate(-110%, -50%);
+}
+.right-arrow {
     right: 0;
     transform: translate(110%, -50%);
-  }
-  
-  
-  /* Puntitos de navegación */
-  .slider-dots {
+}
+
+/* ========================
+   Puntitos de Navegación
+======================== */
+
+.slider-dots {
     text-align: center;
     margin-top: 10px;
-  }
-  .slider-dot {
+}
+
+.slider-dot {
     display: inline-block;
     width: 8px;
     height: 8px;
@@ -237,8 +281,8 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  .slider-dot.active {
+}
+
+.slider-dot.active {
     background-color: #333;
-  }
-  
+}

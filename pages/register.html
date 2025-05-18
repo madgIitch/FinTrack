@@ -4,24 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
+    
+    <!-- Estilos CSS -->
     <link rel="stylesheet" href="../css/register.css">
     <link rel="stylesheet" href="../css/responsive.css">
+    
+    <!-- Manifest para PWA -->
     <link rel="manifest" href="../manifest.json">
+    
+    <!-- Iconos de Material -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <div class="background-container"></div>
+
+    <!-- Contenedor del logo -->
     <div class="logo-container">
         <img src="../img/logoFintonic.svg" alt="Logo Fintonic" class="logo">
     </div>
 
+    <!-- Contenedor del formulario de registro -->
     <div class="register-container">
         <form id="register-form">
-            <!-- Barra de Progreso -->
+            
+            <!-- Barra de progreso -->
             <div class="progress-container">
                 <div class="progress-bar" id="progress-bar"></div>
             </div>
 
+            <!-- Paso 1: Nombre y Apellidos -->
             <div id="step-1" class="step active">
                 <h2>Introduce tu nombre y apellidos</h2>
                 <div class="input-field">
@@ -33,6 +44,7 @@
                 <button type="button" class="btn-custom next-step" data-next="step-2">Siguiente</button>
             </div>
 
+            <!-- Paso 2: Correo Electrónico -->
             <div id="step-2" class="step">
                 <h2>Introduce tu correo electrónico</h2>
                 <div class="input-field">
@@ -44,13 +56,13 @@
                 <button type="button" class="btn-custom next-step" data-next="step-4" id="check-email">Siguiente</button>
             </div>
 
+            <!-- Paso 4: Contraseña -->
             <div id="step-4" class="step">
                 <h2>Introduce tu contraseña</h2>
                 <div class="input-field password-field">
                     <input type="password" id="password" name="password" placeholder="Contraseña" required>
                     <i class="material-icons visibility-icon">visibility</i>
                 </div>
-
                 <div class="input-field password-field">
                     <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirmar Contraseña" required>
                     <i class="material-icons visibility-icon">visibility</i>
@@ -60,6 +72,7 @@
         </form>
     </div>
 
+    <!-- Lógica del registro -->
     <script type="module" src="../js/register.js"></script>
 </body>
 </html>
